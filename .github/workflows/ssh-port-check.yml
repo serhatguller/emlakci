@@ -1,0 +1,24 @@
+name: SSH port check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+    steps:
+      - name: Scan common SSH ports
+        run: |
+          [ -z "$SSH_HOST" ] && { echo "::error::SSH_HOST secret bos"; exit 1; }
+          found=0
+          for p in 22 2222 2200 22000 22022 2020 2022 2223 1022 7822 21098 18765 3022 8022 2121 2299 5522 65002; do
+            if timeout 4 bash -c "exec 3<>/dev/tcp/$SSH_HOST/$p && head -c 40 <&3" 2>/dev/null | grep -q '^SSH-'; then
+              echo "::notice::SSH ACIK PORT: $p"
+              found=1
+            else
+              echo "port $p: kapali/yanit yok"
+            fi
+          done
+          [ $found = 1 ] || echo "::warning::Taranan portlarin hicbirinde SSH yok; hosting SSH'i kapali olabilir veya baska port kullaniyor."
