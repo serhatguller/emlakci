@@ -9,18 +9,37 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SSH_KEY: ${{ secrets.SSH_KEY }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Check secrets
+        run: |
+          missing=0
+          for v in SSH_KEY SSH_HOST SSH_USER DEPLOY_PATH; do
+            if [ -z "${!v}" ]; then echo "::error::Eksik secret: $v"; missing=1; fi
+          done
+          case "$DEPLOY_PATH" in
+            */themes/evcimix) ;;
+            *) echo "::error::DEPLOY_PATH 'themes/evcimix' ile bitmeli"; missing=1 ;;
+          esac
+          exit $missing
 
       - name: Prepare SSH
         run: |
           install -m 700 -d ~/.ssh
-          printf '%s\n' "${{ secrets.SSH_KEY }}" > ~/.ssh/id_deploy
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
-          ssh-keyscan -p "${{ secrets.SSH_PORT || 22 }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keygen -y -f ~/.ssh/id_deploy >/dev/null || { echo "::error::SSH_KEY gecersiz (tam private key, BEGIN/END satirlari dahil olmali)"; exit 1; }
 
       - name: Rsync theme
         run: |
+          PORT="${SSH_PORT:-22}"
           rsync -az --delete \
-            -e "ssh -i ~/.ssh/id_deploy -p ${{ secrets.SSH_PORT || 22 }}" \
-            evcimix/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/"
+            -e "ssh -i ~/.ssh/id_deploy -p $PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20" \
+            evcimix/ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
