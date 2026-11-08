@@ -1,9 +1,9 @@
 <footer class="foot" id="iletisim">
   <div class="wrap">
     <div>
-      <a class="logo" href="<?php echo esc_url(home_url('/')); ?>" style="color:#fff">Yuva<span>.</span>Gayrimenkul</a>
-      <p style="margin:16px 0">Alım, satım ve kiralamada şeffaf, güvenilir ve sonuç odaklı gayrimenkul danışmanlığı.</p>
-      <p>📞 0212 000 00 00<br>✉️ info@yuvagayrimenkul.com<br>📍 İstanbul, Türkiye</p>
+      <a class="logo" href="<?php echo esc_url(home_url('/')); ?>"><img class="mark" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/brand/logo-mark.svg" alt="" width="40" height="40"><span class="lt"><b>Evcimix</b><small>Gayrimenkul</small></span></a>
+      <p style="margin:16px 0">Evcimix Gayrimenkul Ticaret Limited Şirketi. Alım, satım ve kiralamada şeffaf, güvenilir ve sonuç odaklı gayrimenkul danışmanlığı.</p>
+      <p>📞 0212 000 00 00<br>✉️ info@evcimix.com<br>📍 Sahabiye Mah., Sivas Bulvarı, Yıldız Apt. D:5, No:17<br>&nbsp;&nbsp;&nbsp;&nbsp;Kocasinan / Kayseri</p>
     </div>
     <div>
       <h3>Hızlı Bağlantılar</h3>
@@ -27,7 +27,7 @@
       </form>
     </div>
   </div>
-  <div class="copy">© <?php echo esc_html(date('Y')); ?> Yuva Gayrimenkul. Tüm hakları saklıdır.</div>
+  <div class="copy">© <?php echo esc_html(date('Y')); ?> Evcimix Gayrimenkul Ticaret Limited Şirketi. Tüm hakları saklıdır.</div>
 </footer>
 <a class="wa" href="https://wa.me/<?php echo esc_attr(YUVA_WA); ?>" target="_blank" rel="noopener">WhatsApp</a>
 <?php wp_footer(); ?>

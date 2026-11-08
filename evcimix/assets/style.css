@@ -19,7 +19,11 @@ h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:600;line-heigh
 .nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 32px;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .home .nav{position:absolute;left:0;right:0;background:transparent;border:0;color:#fff;backdrop-filter:none}
 .logo{font-family:"Playfair Display",serif;font-size:1.55rem;font-weight:700;letter-spacing:.02em}
-.logo span{color:var(--gold)}
+.logo{display:flex;align-items:center;gap:12px}
+.logo .mark{width:40px;height:40px;border-radius:10px}
+.logo .lt{display:grid;line-height:1.05}
+.logo b{font-size:1.45rem;font-weight:700}
+.logo small{font-family:Inter,sans-serif;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:3px}
 .menu{display:flex;gap:30px;font-size:.92rem;font-weight:500}
 .menu a{opacity:.85;transition:.2s}.menu a:hover{opacity:1;color:var(--gold)}
 .right{display:flex;gap:16px;align-items:center}
@@ -114,6 +118,7 @@ h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:600;line-heigh
 /* Footer */
 .foot{background:var(--navy);color:#cfd6de}
 .foot .wrap{padding:72px 24px 40px;display:grid;grid-template-columns:1.2fr 1fr 1.4fr;gap:48px}
+.foot .logo{color:#fff}
 .foot h3{color:#fff;font-size:1.15rem;margin-bottom:16px}
 .foot ul{list-style:none;padding:0;display:grid;gap:8px;font-size:.92rem}
 .foot a:hover{color:var(--gold)}

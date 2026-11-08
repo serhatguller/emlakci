@@ -17,6 +17,18 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('yuva', get_template_directory_uri() . '/assets/app.js', [], $v, true);
 });
 
+/* Favicon */
+add_action('wp_head', function () {
+    $u = get_template_directory_uri() . '/assets/brand/';
+    echo '<link rel="icon" type="image/svg+xml" href="' . esc_url($u . 'favicon.svg') . '">' . "\n";
+    echo '<link rel="icon" type="image/png" sizes="32x32" href="' . esc_url($u . 'favicon-32.png') . '">' . "\n";
+    echo '<link rel="icon" type="image/png" sizes="16x16" href="' . esc_url($u . 'favicon-16.png') . '">' . "\n";
+    echo '<link rel="shortcut icon" href="' . esc_url($u . 'favicon.ico') . '">' . "\n";
+    echo '<link rel="apple-touch-icon" href="' . esc_url($u . 'apple-touch-icon.png') . '">' . "\n";
+    echo '<meta name="theme-color" content="#0b1b2b">' . "\n";
+}, 1);
+add_action('admin_head', function () { echo '<link rel="icon" href="' . esc_url(get_template_directory_uri() . '/assets/brand/favicon.ico') . '">'; });
+
 /* İlan içerik tipi + sınıflandırmalar */
 add_action('init', function () {
     register_post_type('ilan', [
