@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yuva Emlak | Satılık ve Kiralık İlanlar</title>
+<meta name="description" content="Satılık ve kiralık konut, iş yeri, arsa ilanları. Şehir, fiyat ve oda sayısına göre filtreleyin.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="#">Yuva<span>Emlak</span></a>
+  <nav class="tabs" id="durumTabs">
+    <button data-v="Satılık" class="on">Satılık</button>
+    <button data-v="Kiralık">Kiralık</button>
+    <button data-v="">Tümü</button>
+  </nav>
+  <div class="right">
+    <button class="link" id="favBtn">♥ Favoriler (<span id="favCount">0</span>)</button>
+    <a class="btn small" href="#ilan-ver">İlan Ver</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Türkiye'nin Emlak İlanları Tek Yerde</h1>
+  <div class="cats" id="catTabs">
+    <button data-v="" class="on">Tümü</button>
+    <button data-v="Konut">Konut</button>
+    <button data-v="İş Yeri">İş Yeri</button>
+    <button data-v="Arsa">Arsa</button>
+    <button data-v="Bina">Bina</button>
+  </div>
+  <form class="bar" id="topSearch">
+    <input id="q" placeholder="Şehir, ilçe veya ilan başlığı ara...">
+    <button class="btn">Ara</button>
+  </form>
+</section>
+
+<main class="layout">
+  <aside class="filters" id="filters">
+    <h3>Filtreler</h3>
+    <label>Şehir<select id="sehir"><option value="">Tümü</option></select></label>
+    <label>Min. Fiyat (₺)<input id="min" type="number" min="0" placeholder="0"></label>
+    <label>Maks. Fiyat (₺)<input id="max" type="number" min="0" placeholder="Sınırsız"></label>
+    <label>Oda Sayısı<select id="oda"><option value="">Tümü</option><option>1+1</option><option>2+1</option><option>3+1</option><option>4+1</option><option>5+</option></select></label>
+    <label>Min. m²<input id="m2" type="number" min="0" placeholder="0"></label>
+    <button class="btn" type="button" id="reset">Temizle</button>
+  </aside>
+
+  <section class="results">
+    <div class="topline">
+      <b><span id="count">0</span> ilan bulundu</b>
+      <select id="sort">
+        <option value="">Önerilen</option>
+        <option value="asc">Fiyat: Düşükten Yükseğe</option>
+        <option value="desc">Fiyat: Yüksekten Düşüğe</option>
+        <option value="m2">Büyükten Küçüğe (m²)</option>
+      </select>
+    </div>
+    <div id="list"></div>
+    <p id="bos" hidden>Kriterlere uygun ilan bulunamadı.</p>
+  </section>
+</main>
+
+<section class="wrap stats">
+  <div><b>850+</b>Mutlu müşteri</div><div><b>15</b>Yıl tecrübe</div><div><b>120</b>Aktif ilan</div><div><b>7/24</b>Danışmanlık</div>
+</section>
+
+<section id="ilan-ver" class="wrap contact">
+  <h2>İlan Ver / Bize Ulaşın</h2>
+  <form id="contactForm">
+    <input name="ad" placeholder="Ad Soyad" required>
+    <input name="tel" type="tel" placeholder="Telefon" required>
+    <textarea name="mesaj" rows="3" placeholder="Mülkünüz hakkında bilgi veya mesajınız"></textarea>
+    <button class="btn">Gönder</button>
+    <p id="ok" hidden>Teşekkürler, size en kısa sürede dönüş yapacağız.</p>
+  </form>
+  <p>📞 0212 000 00 00 · ✉️ info@yuvaemlak.com · 📍 İstanbul</p>
+</section>
+
+<dialog id="modal"><form method="dialog"><button class="x">✕</button></form><div id="modalBody"></div></dialog>
+
+<a class="wa" href="https://wa.me/902120000000" target="_blank" rel="noopener">WhatsApp</a>
+<footer>© <span id="y"></span> Yuva Emlak. Tüm hakları saklıdır.</footer>
+<script src="app.js"></script>
+</body>
+</html>
